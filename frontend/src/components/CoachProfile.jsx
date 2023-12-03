@@ -82,7 +82,7 @@ const CoachProfile = () => {
       try {
         const formData = new FormData();
         formData.append("image", profileImage);
-        await axios.put("http://localhost:6996/api/coach/profile", formData, {
+        await axios.put("https://crick-coach-azure-app.azurewebsites.net/api/coach/profile", formData, {
           headers: { "Content-Type": "multipart/form-data" },
         });
         const res = await updateCoach({

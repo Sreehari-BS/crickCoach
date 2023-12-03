@@ -13,6 +13,7 @@ import coachRoutes from "./routes/coachRoutes.js";
 import AdminRoutes from "./routes/adminRoutes.js";
 import ChatRoutes from "./routes/chatRoutes.js";
 import MessageRoutes from "./routes/messageRoute.js";
+import path from "path"
 
 connectDB();
 
@@ -22,7 +23,7 @@ const httpServer = createServer(app);
 
 const io = new Server(httpServer, {
   cors: {
-    origin: "http://localhost:6996",
+    origin: "https://crickcoach-frontend.vercel.app/",
   },
 });
 
@@ -81,6 +82,12 @@ app.get("/", (req, res) => res.send("Server is Ready"));
 
 app.use(notFound);
 app.use(errorHandler);
+
+//Production Script
+app.use(express.static("./frontend/dist"))
+app.get("*", (req,res) => {
+  res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"))
+})
 
 httpServer.listen(port, () =>
   console.log(`Server is running on http://localhost:${port}`)
