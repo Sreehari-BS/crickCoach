@@ -1,6 +1,6 @@
 import { apiSlice } from "./apiSlice";
 
-const USER_URL = "https://crick-coach-azure-app.azurewebsites.net/api/user";
+const USER_URL = "http://localhost:6996/api/user";
 
 export const userApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({

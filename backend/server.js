@@ -23,7 +23,7 @@ const httpServer = createServer(app);
 
 const io = new Server(httpServer, {
   cors: {
-    origin: "https://crickcoach-frontend.vercel.app",
+    origin: "http://localhost:6996",
   },
 });
 
@@ -84,10 +84,10 @@ app.use(notFound);
 app.use(errorHandler);
 
 //Production Script
-app.use(express.static("./frontend/dist"))
-app.get("*", (req,res) => {
-  res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"))
-})
+// app.use(express.static("./frontend/dist"))
+// app.get("*", (req,res) => {
+//   res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"))
+// })
 
 httpServer.listen(port, () =>
   console.log(`Server is running on http://localhost:${port}`)

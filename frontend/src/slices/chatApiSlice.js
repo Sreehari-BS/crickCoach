@@ -1,6 +1,6 @@
 import { apiSlice } from "./apiSlice";
 
-const CHAT_URL = "https://crick-coach-azure-app.azurewebsites.net/api/chat";
+const CHAT_URL = "http://localhost:6996/api/chat";
 
 export const chatApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({

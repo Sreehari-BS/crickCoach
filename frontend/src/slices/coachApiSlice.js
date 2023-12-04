@@ -1,6 +1,6 @@
 import { apiSlice } from "./apiSlice";
 
-const COACH_URL = "https://crick-coach-azure-app.azurewebsites.net/api/coach";
+const COACH_URL = "api/coach";
 
 export const coachApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({

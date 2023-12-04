@@ -8,7 +8,7 @@ export default defineConfig({
     port: 6996,
     proxy: {
       "/api": {
-        target: "https://crick-coach-azure-app.azurewebsites.net",
+        target: "http://localhost:7000",
         changeOrigin: true
       }
     }
