@@ -13,7 +13,7 @@ import coachRoutes from "./routes/coachRoutes.js";
 import AdminRoutes from "./routes/adminRoutes.js";
 import ChatRoutes from "./routes/chatRoutes.js";
 import MessageRoutes from "./routes/messageRoute.js";
-import path from "path"
+import path from "path";
 
 connectDB();
 
@@ -24,6 +24,7 @@ const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
     origin: "https://crick-coach-frontend.vercel.app",
+    target: "https://crickcoach.onrender.com",
   },
 });
 
@@ -51,7 +52,7 @@ io.on("connection", (socket) => {
     console.log("Data", data);
     if (user) {
       const mess = io.to(user.socketId).emit("receive-message", data);
-      if(mess){
+      if (mess) {
         console.log("Receiving on socket : ", user.socketId, data);
       }
     }
