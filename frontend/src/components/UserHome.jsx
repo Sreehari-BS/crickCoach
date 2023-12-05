@@ -213,7 +213,7 @@ const userHome = () => {
   }, [userChat]);
 
   useEffect(() => {
-    const newSocket = io("http://localhost:7000");
+    const newSocket = io("https://crickcoach.onrender.com");
 
     newSocket.on("connect", () => {
       setSocket(newSocket);
