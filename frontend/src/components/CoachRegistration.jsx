@@ -75,7 +75,7 @@ const CoachRegistration = () => {
         formData.append("images", certificates[i]);
       }
       const data = await axios.post(
-        "https://crick-coach-azure-app.azurewebsites.net/api/coach/signup",
+        "https://crickcoach.onrender.com/api/coach/signup",
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },

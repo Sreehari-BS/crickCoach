@@ -45,7 +45,7 @@ const CoachHome = () => {
       const formData = new FormData();
       formData.append("video", video);
       formData.append("title", title);
-      await axios.post("https://crick-coach-azure-app.azurewebsites.net/api/coach/video", formData, {
+      await axios.post("https://crickcoach.onrender.com/api/coach/video", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
         toast.success("Video uploaded");

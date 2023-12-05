@@ -76,7 +76,7 @@ const UserProfile = () => {
         const formData = new FormData();
         formData.append("image", profileImage);
         const result = await axios.put(
-          "https://crick-coach-azure-app.azurewebsites.net/api/user/profile",
+          "https://crickcoach.onrender.com/api/user/profile",
           formData,
           {
             headers: { "Content-Type": "multipart/form-data" },

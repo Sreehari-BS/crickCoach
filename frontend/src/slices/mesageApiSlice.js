@@ -1,6 +1,6 @@
 import { apiSlice } from "./apiSlice";
 
-const MESSAGE_URL = "http://localhost:6996/api/message";
+const MESSAGE_URL = "https://crickcoach.onrender.com/api/message";
 
 export const messageApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
