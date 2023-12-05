@@ -1,6 +1,6 @@
 import { apiSlice } from "./apiSlice";
 
-const COACH_URL = "api/coach";
+const COACH_URL = "https://crickcoach.onrender.com/api/coach";
 
 export const coachApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
