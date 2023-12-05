@@ -116,7 +116,7 @@ const registerUser = asyncHandler(async (req, res) => {
 });
 
 const resendOTP = asyncHandler(async (req, res) => {
-  const {email} = req.body;
+  const { email } = req.body;
   let otp = Math.floor(Math.random() * 9000) + 1000;
 
   let transporter = nodemailer.createTransport({
