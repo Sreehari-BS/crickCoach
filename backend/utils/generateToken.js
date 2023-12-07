@@ -9,6 +9,8 @@ const generateUserToken = (res, userId) => {
     }
   );
 
+  console.log("accessToken",accessToken)
+
   const refreshToken = jwt.sign(
     { userId },
     process.env.JWT_USER_REFRESH_TOKEN_SECRET,
@@ -16,6 +18,8 @@ const generateUserToken = (res, userId) => {
       expiresIn: "30d",
     }
   );
+
+  console.log("refreshToken",refreshToken)
 
   res.cookie("userAccessToken", accessToken, {
     httpOnly: true,
