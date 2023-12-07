@@ -23,6 +23,7 @@ const httpServer = createServer(app);
 
 const io = new Server(httpServer, {
   cors: {
+    credentials: true,
     origin: "https://crick-coach-frontend.vercel.app",
   },
 });
