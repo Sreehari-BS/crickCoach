@@ -115,6 +115,8 @@ const userHome = () => {
     }
   };
 
+  console.log("coachList",coachList)
+
   const { userInfo } = useSelector((state) => state.auth);
   const userId = userInfo && userInfo._id;
   const chatId = userChat && userChat._id;
