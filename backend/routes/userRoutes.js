@@ -47,7 +47,8 @@ router
   .route("/profile")
   .get(protect, userProfile)
   .put(protect, userProfileImageUpload.single("image"), updateUserProfile);
-router.get("/home", protect, listCoach);
+// router.get("/home", protect, listCoach);
+router.get("/home", listCoach);
 router.get("/services/:coachId", protect, listCoachServices);
 router.get("/allServices", protect, listAllUniqueServices);
 router.get("/listCoachByService", protect, listCoachByService);
