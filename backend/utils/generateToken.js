@@ -9,7 +9,7 @@ const generateUserToken = (res, userId) => {
     }
   );
 
-  console.log("accessToken",accessToken)
+  console.log("accessToken", accessToken);
 
   const refreshToken = jwt.sign(
     { userId },
@@ -19,19 +19,15 @@ const generateUserToken = (res, userId) => {
     }
   );
 
-  console.log("refreshToken",refreshToken)
+  console.log("refreshToken", refreshToken);
 
   res.cookie("userAccessToken", accessToken, {
     httpOnly: true,
-    secure: process.env.NODE_ENV !== "development",
-    sameSite: "strict",
     maxAge: 15 * 60 * 1000,
   });
 
   res.cookie("userRefreshToken", refreshToken, {
     httpOnly: true,
-    secure: process.env.NODE_ENV !== "development",
-    sameSite: "strict",
     maxAge: 30 * 24 * 60 * 60 * 1000,
   });
 };
@@ -69,13 +65,21 @@ const generateCoachToken = (res, coachId) => {
 };
 
 const generateAdminToken = (res, adminId) => {
-  const accessToken = jwt.sign({ adminId }, process.env.JWT_ADMIN_ACCESS_TOKEN_SECRET, {
-    expiresIn: "15m",
-  });
+  const accessToken = jwt.sign(
+    { adminId },
+    process.env.JWT_ADMIN_ACCESS_TOKEN_SECRET,
+    {
+      expiresIn: "15m",
+    }
+  );
 
-  const refreshToken = jwt.sign({ adminId }, process.env.JWT_ADMIN_REFRESH_TOKEN_SECRET, {
-    expiresIn: "30d",
-  });
+  const refreshToken = jwt.sign(
+    { adminId },
+    process.env.JWT_ADMIN_REFRESH_TOKEN_SECRET,
+    {
+      expiresIn: "30d",
+    }
+  );
 
   res.cookie("adminAccessToken", accessToken, {
     httpOnly: true,
