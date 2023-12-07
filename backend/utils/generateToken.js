@@ -30,6 +30,8 @@ const generateUserToken = (res, userId) => {
     httpOnly: true,
     maxAge: 30 * 24 * 60 * 60 * 1000,
   });
+  console.log(req.cookies.userAccessToken);
+  console.log(req.cookies.userRefreshToken);
 };
 
 const generateCoachToken = (res, coachId) => {
