@@ -26,6 +26,7 @@ const generateUserToken = (res, req, userId) => {
     maxAge: 15 * 60 * 1000,
     domain:"https://crick-coach-frontend.vercel.app",
     secure: process.env.NODE_ENV !== "development",
+    sameSite: 'none',
   });
 
   res.cookie("userRefreshToken", refreshToken, {
@@ -33,6 +34,7 @@ const generateUserToken = (res, req, userId) => {
     maxAge: 30 * 24 * 60 * 60 * 1000,
     domain:"https://crick-coach-frontend.vercel.app",
     secure: process.env.NODE_ENV !== "development",
+    sameSite: 'none',
   });
   console.log(req.cookies.userAccessToken);
   console.log(req.cookies.userRefreshToken);
