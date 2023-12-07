@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-const generateUserToken = (res, req, userId) => {
+const generateUserToken = (res, userId) => {
   const accessToken = jwt.sign(
     { userId },
     process.env.JWT_USER_ACCESS_TOKEN_SECRET,
@@ -24,23 +24,23 @@ const generateUserToken = (res, req, userId) => {
   res.cookie("userAccessToken", accessToken, {
     httpOnly: true,
     maxAge: 15 * 60 * 1000,
-    domain:"https://crick-coach-frontend.vercel.app",
+    domain: "crick-coach-frontend.vercel.app",
     secure: process.env.NODE_ENV !== "development",
-    sameSite: 'none',
+    sameSite: "none",
   });
 
   res.cookie("userRefreshToken", refreshToken, {
     httpOnly: true,
     maxAge: 30 * 24 * 60 * 60 * 1000,
-    domain:"https://crick-coach-frontend.vercel.app",
+    domain: "crick-coach-frontend.vercel.app",
     secure: process.env.NODE_ENV !== "development",
-    sameSite: 'none',
+    sameSite: "none",
   });
-  console.log(req.cookies.userAccessToken);
-  console.log(req.cookies.userRefreshToken);
 
-  res.setHeader('Authorization', `Bearer ${accessToken}`);
-  res.setHeader('Refresh-Token', refreshToken);
+  res.setHeader("Authorization", `Bearer ${accessToken}`);
+  res.setHeader("Refresh-Token", refreshToken);
+
+  console.log(res.getHeaders());
 };
 
 const generateCoachToken = (res, coachId) => {
