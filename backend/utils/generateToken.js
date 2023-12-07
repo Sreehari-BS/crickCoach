@@ -1,6 +1,41 @@
 import jwt from "jsonwebtoken";
 
+const generateUserToken = (res, userId) => {
+  const accessToken = jwt.sign(
+    { userId },
+    process.env.JWT_USER_ACCESS_TOKEN_SECRET,
+    {
+      expiresIn: "15m",
+    }
+  );
 
+  const refreshToken = jwt.sign(
+    { userId },
+    process.env.JWT_USER_REFRESH_TOKEN_SECRET,
+    {
+      expiresIn: "30d",
+    }
+  );
+
+  res.cookie("userAccessToken", accessToken, {
+    httpOnly: true,
+    maxAge: 15 * 60 * 1000,
+    domain: "crick-coach-frontend.vercel.app",
+    secure: process.env.NODE_ENV !== "development",
+    sameSite: "none",
+  });
+
+  res.cookie("userRefreshToken", refreshToken, {
+    httpOnly: true,
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+    domain: "crick-coach-frontend.vercel.app",
+    secure: process.env.NODE_ENV !== "development",
+    sameSite: "none",
+  });
+
+  res.setHeader('Authorization', `Bearer ${accessToken}`);
+  res.setHeader('Refresh-Token', refreshToken);
+};
 
 const generateCoachToken = (res, coachId) => {
   const accessToken = jwt.sign(
