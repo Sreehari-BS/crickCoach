@@ -38,6 +38,9 @@ const generateUserToken = (res, req, userId) => {
   });
   console.log(req.cookies.userAccessToken);
   console.log(req.cookies.userRefreshToken);
+
+  res.setHeader('Authorization', `Bearer ${accessToken}`);
+  res.setHeader('Refresh-Token', refreshToken);
 };
 
 const generateCoachToken = (res, coachId) => {
