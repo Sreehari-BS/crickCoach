@@ -32,9 +32,6 @@ const generateUserToken = (res, userId) => {
     secure: process.env.NODE_ENV !== "development",
     sameSite: "none",
   });
-
-  res.setHeader('Authorization', `Bearer ${accessToken}`);
-  res.setHeader('Refresh-Token', refreshToken);
 };
 
 const generateCoachToken = (res, coachId) => {

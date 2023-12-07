@@ -5,7 +5,7 @@ import Coach from "../models/coachModel.js";
 import Admin from "../models/adminModel.js";
 
 const protect = asyncHandler(async (req, res, next) => {
-  let userAccessToken = req.cookies.userAccessToken || req.headers['authorization'];
+  let userAccessToken = req.cookies.userAccessToken;
   console.log("userAccessToken", userAccessToken);
 
   try {
@@ -18,7 +18,7 @@ const protect = asyncHandler(async (req, res, next) => {
 
     next();
   } catch (error) {
-    let userRefreshToken = req.cookies.userRefreshToken || req.headers['refresh-token'];
+    let userRefreshToken = req.cookies.userRefreshToken;
     console.log("userRefreshToken", userRefreshToken);
 
     if (!userRefreshToken) {
