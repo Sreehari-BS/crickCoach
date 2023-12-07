@@ -39,10 +39,6 @@ const generateUserToken = (res, userId) => {
 
   res.setHeader("Authorization", `Bearer ${accessToken}`);
   res.setHeader("Refresh-Token", refreshToken);
-
-  const headers = res.getHeaders();
-  console.log("Authorization header:", headers['authorization']);
-  console.log("Refresh-Token header:", headers['refresh-token']);
 };
 
 const generateCoachToken = (res, coachId) => {
