@@ -23,7 +23,6 @@ const authUser = asyncHandler(async (req, res) => {
       if (!user.is_blocked) {
         if (await user.matchPassword(password)) {
           const tokens = generateUserToken(res, user._id);
-          console.log("tokens", tokens)
           const wallet = await Wallet.findOne({ customer: user._id });
           if (!wallet) {
             const newWallet = await Wallet.create({
