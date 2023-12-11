@@ -6,7 +6,6 @@ import Admin from "../models/adminModel.js";
 
 const protect = asyncHandler(async (req, res, next) => {
   let userAccessToken = req.cookies.userAccessToken;
-  console.log("userAccessToken", userAccessToken);
 
   try {
     const decoded = jwt.verify(
@@ -19,7 +18,6 @@ const protect = asyncHandler(async (req, res, next) => {
     next();
   } catch (error) {
     let userRefreshToken = req.cookies.userRefreshToken;
-    console.log("userRefreshToken", userRefreshToken);
 
     if (!userRefreshToken) {
       res.status(401);
