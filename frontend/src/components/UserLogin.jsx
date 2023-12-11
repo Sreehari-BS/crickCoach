@@ -56,10 +56,10 @@ const UserLogin = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const {token, ...otherCredentials} = await login({ email, password }).unwrap();
+      const {tokens, ...otherCredentials} = await login({ email, password }).unwrap();
       dispatch(setCredentials(otherCredentials));
-      localStorage.setItem("userAccessToken", token.accessToken)
-      localStorage.setItem("userRefreshToken", token.refreshToken)
+      localStorage.setItem("userAccessToken", tokens.accessToken)
+      localStorage.setItem("userRefreshToken", tokens.refreshToken)
       navigate("/home");
     } catch (error) {
       toast.error(error?.data?.message || error.error || error.message);
