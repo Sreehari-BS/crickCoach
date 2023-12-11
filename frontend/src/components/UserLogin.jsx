@@ -57,7 +57,7 @@ const UserLogin = () => {
     e.preventDefault();
     try {
       const {token, ...otherCredentials} = await login({ email, password }).unwrap();
-      dispatch(setCredentials(...otherCredentials));
+      dispatch(setCredentials(otherCredentials));
       localStorage.setItem("userAccessToken", token.accessToken)
       localStorage.setItem("userRefreshToken", token.refreshToken)
       navigate("/home");
