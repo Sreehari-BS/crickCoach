@@ -5,7 +5,8 @@ import Coach from "../models/coachModel.js";
 import Admin from "../models/adminModel.js";
 
 const protect = asyncHandler(async (req, res, next) => {
-  let userAccessToken = req.cookies.userAccessToken;
+  const userAccessToken = req.headers["useraccesstoken"];
+  console.log("userAccessToken", userAccessToken);
 
   try {
     const decoded = jwt.verify(
@@ -17,7 +18,8 @@ const protect = asyncHandler(async (req, res, next) => {
 
     next();
   } catch (error) {
-    let userRefreshToken = req.cookies.userRefreshToken;
+    let userRefreshToken = req.headers["userrefreshtoken"];
+    console.log(userRefreshToken)
 
     if (!userRefreshToken) {
       res.status(401);

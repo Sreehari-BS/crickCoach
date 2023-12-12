@@ -50,6 +50,10 @@ export const userApiSlice = apiSlice.injectEndpoints({
       query: () => ({
         url: `${USER_URL}/home`,
         method: "GET",
+        headers: {
+          "UserAccessToken": localStorage.getItem("userAccessToken"),
+          "UserRefreshToken": localStorage.getItem("userRefreshToken")
+        }
       }),
     }),
     listCoachService: builder.mutation({
