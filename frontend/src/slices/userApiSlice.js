@@ -44,6 +44,10 @@ export const userApiSlice = apiSlice.injectEndpoints({
         url: `${USER_URL}/profile`,
         method: "PUT",
         body: data,
+        headers: {
+          "UserAccessToken": localStorage.getItem("userAccessToken"),
+          "UserRefreshToken": localStorage.getItem("userRefreshToken")
+        },
       }),
     }),
     listCoach: builder.mutation({
@@ -53,43 +57,67 @@ export const userApiSlice = apiSlice.injectEndpoints({
         headers: {
           "UserAccessToken": localStorage.getItem("userAccessToken"),
           "UserRefreshToken": localStorage.getItem("userRefreshToken")
-        }
+        },
       }),
     }),
     listCoachService: builder.mutation({
       query: (id) => ({
         url: `${USER_URL}/services/${id}`,
         method: "GET",
+        headers: {
+          "UserAccessToken": localStorage.getItem("userAccessToken"),
+          "UserRefreshToken": localStorage.getItem("userRefreshToken")
+        },
       }),
     }),
     listAllServices: builder.mutation({
       query: () => ({
         url: `${USER_URL}/allServices`,
         method: "GET",
+        headers: {
+          "UserAccessToken": localStorage.getItem("userAccessToken"),
+          "UserRefreshToken": localStorage.getItem("userRefreshToken")
+        },
       }),
     }),
     listCoachByService: builder.mutation({
       query: (serviceName) => ({
         url: `${USER_URL}/listCoachByService?serviceName=${serviceName}`,
         method: "GET",
+        headers: {
+          "UserAccessToken": localStorage.getItem("userAccessToken"),
+          "UserRefreshToken": localStorage.getItem("userRefreshToken")
+        },
       }),
     }),
     listAppointmentByUser: builder.mutation({
       query: () => ({
         url: `${USER_URL}/listAppointments`,
         method: "GET",
+        headers: {
+          "UserAccessToken": localStorage.getItem("userAccessToken"),
+          "UserRefreshToken": localStorage.getItem("userRefreshToken")
+        },
       }),
     }),
     cancelAppointment: builder.mutation({
       query: (id) => ({
         url: `${USER_URL}/cancelAppointment/${id}`,
         method: "PATCH",
+        headers: {
+          "UserAccessToken": localStorage.getItem("userAccessToken"),
+          "UserRefreshToken": localStorage.getItem("userRefreshToken")
+        },
       }),
     }),
     walletBalance: builder.mutation({
       query: () => ({
         url: `${USER_URL}/walletBalance`,
         method: "GET",
+        headers: {
+          "UserAccessToken": localStorage.getItem("userAccessToken"),
+          "UserRefreshToken": localStorage.getItem("userRefreshToken")
+        },
       }),
     }),
     walletPayment: builder.mutation({
@@ -104,36 +132,60 @@ export const userApiSlice = apiSlice.injectEndpoints({
       }) => ({
         url: `${USER_URL}/walletPayment?serviceId=${serviceId}&serviceName=${serviceName}&duration=${duration}&amount=${amount}&date=${date}&time=${time}&coachId=${coachId}`,
         method: "POST",
+        headers: {
+          "UserAccessToken": localStorage.getItem("userAccessToken"),
+          "UserRefreshToken": localStorage.getItem("userRefreshToken")
+        },
       }),
     }),
     addReview: builder.mutation({
       query: ({ rating, comment, appointmentId }) => ({
         url: `${USER_URL}/review?rating=${rating}&comment=${comment}&appointmentId=${appointmentId}`,
         method: "POST",
+        headers: {
+          "UserAccessToken": localStorage.getItem("userAccessToken"),
+          "UserRefreshToken": localStorage.getItem("userRefreshToken")
+        },
       }),
     }),
     reviewList: builder.mutation({
       query: (coachId) => ({
         url: `${USER_URL}/review/${coachId}`,
         method: "GET",
+        headers: {
+          "UserAccessToken": localStorage.getItem("userAccessToken"),
+          "UserRefreshToken": localStorage.getItem("userRefreshToken")
+        },
       }),
     }),
     userWalletHistory: builder.mutation({
       query: () => ({
         url: `${USER_URL}/wallet`,
         method: "GET",
+        headers: {
+          "UserAccessToken": localStorage.getItem("userAccessToken"),
+          "UserRefreshToken": localStorage.getItem("userRefreshToken")
+        },
       }),
     }),
     verifyAppointment: builder.mutation({
       query: (coachId) => ({
         url: `${USER_URL}/verifyCompletedAppointment/${coachId}`,
         method: "GET",
+        headers: {
+          "UserAccessToken": localStorage.getItem("userAccessToken"),
+          "UserRefreshToken": localStorage.getItem("userRefreshToken")
+        },
       }),
     }),
     searchCoach: builder.mutation({
       query: (search) => ({
         url: `${USER_URL}/search/${search}`,
         method: "GET",
+        headers: {
+          "UserAccessToken": localStorage.getItem("userAccessToken"),
+          "UserRefreshToken": localStorage.getItem("userRefreshToken")
+        },
       }),
     }),
     logout: builder.mutation({
