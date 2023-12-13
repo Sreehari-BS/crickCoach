@@ -56,10 +56,13 @@ const UserLogin = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const {tokens, ...otherCredentials} = await login({ email, password }).unwrap();
+      const { tokens, ...otherCredentials } = await login({
+        email,
+        password,
+      }).unwrap();
       dispatch(setCredentials(otherCredentials));
-      localStorage.setItem("userAccessToken", tokens.accessToken)
-      localStorage.setItem("userRefreshToken", tokens.refreshToken)
+      localStorage.setItem("userAccessToken", tokens.accessToken);
+      localStorage.setItem("userRefreshToken", tokens.refreshToken);
       navigate("/home");
     } catch (error) {
       toast.error(error?.data?.message || error.error || error.message);
@@ -68,15 +71,15 @@ const UserLogin = () => {
 
   const googleLogin = async (name, email, profileImage) => {
     try {
-      const res = await googleAuth({
+      const { tokens, ...otherCredentials } = await googleAuth({
         name,
         email,
         profileImage,
       }).unwrap();
-      if (res) {
-        dispatch(setCredentials({ ...res }));
-        navigate("/home");
-      }
+      dispatch(setCredentials(otherCredentials));
+      localStorage.setItem("userAccessToken", tokens.accessToken);
+      localStorage.setItem("userRefreshToken", tokens.refreshToken);
+      navigate("/home");
     } catch (error) {
       toast.error(error?.data?.message || error.error || error.message);
     }
@@ -191,7 +194,7 @@ const UserLogin = () => {
                         credentialResponse.credential
                       );
                       const { name, email, picture } = googleUserCredentials;
-                      
+
                       googleLogin(name, email, picture);
                     }}
                     onError={() => {

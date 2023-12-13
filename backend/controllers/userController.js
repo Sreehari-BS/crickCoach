@@ -156,7 +156,7 @@ const googleLogin = asyncHandler(async (req, res) => {
 
   if (existingUser) {
     if (!existingUser.is_blocked) {
-      generateUserToken(res, existingUser._id);
+      const tokens = generateUserToken(res, existingUser._id);
       const wallet = await Wallet.findOne({ customer: existingUser._id });
 
       if (!wallet) {
@@ -170,6 +170,7 @@ const googleLogin = asyncHandler(async (req, res) => {
         name: existingUser.name,
         email: existingUser.email,
         profileImage: existingUser.profileImage,
+        tokens,
       });
     } else {
       res.status(400);
@@ -183,7 +184,7 @@ const googleLogin = asyncHandler(async (req, res) => {
       is_verified: true,
     });
 
-    generateUserToken(res, user._id);
+    const tokens = generateUserToken(res, user._id);
 
     const newWallet = await Wallet.create({
       customer: user._id,
@@ -194,6 +195,7 @@ const googleLogin = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       profileImage: user.profileImage,
+      tokens,
     });
   }
 });
