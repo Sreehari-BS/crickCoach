@@ -19,7 +19,7 @@ const authCoach = asyncHandler(async (req, res) => {
       if (coach.is_approved) {
         if (!coach.is_blocked) {
           if (await coach.matchPassword(password)) {
-            generateCoachToken(res, coach._id);
+            const tokens = generateCoachToken(res, coach._id);
             const wallet = await Wallet.findOne({ customer: coach._id });
             if (!wallet) {
               const newWallet = await Wallet.create({
@@ -35,6 +35,7 @@ const authCoach = asyncHandler(async (req, res) => {
               age: coach.age,
               experience: coach.experience,
               certificates: coach.certificates,
+              tokens,
             });
           } else {
             res.status(400);

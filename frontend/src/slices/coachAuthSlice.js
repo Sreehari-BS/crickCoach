@@ -17,6 +17,8 @@ const coachAuthSlice = createSlice({
     coachLogout: (state, action) => {
       state.coachInfo = null;
       localStorage.removeItem("coachInfo");
+      localStorage.removeItem("coachAccessToken");
+      localStorage.removeItem("coachRefreshToken");
     },
   },
 });

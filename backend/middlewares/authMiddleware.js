@@ -55,7 +55,7 @@ const protect = asyncHandler(async (req, res, next) => {
 });
 
 const protectCoach = asyncHandler(async (req, res, next) => {
-  const coachAccessToken = req.cookies.coachAccessToken;
+  const coachAccessToken = req.headers["coachaccesstoken"];
 
   try {
     const decoded = jwt.verify(
@@ -67,7 +67,7 @@ const protectCoach = asyncHandler(async (req, res, next) => {
 
     next();
   } catch (error) {
-    const coachRefreshToken = req.cookies.coachRefreshToken;
+    const coachRefreshToken = req.headers["coachrefreshtoken"];
 
     if (!coachRefreshToken) {
       res.status(401);

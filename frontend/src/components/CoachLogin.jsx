@@ -52,8 +52,10 @@ const CoachLogin = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const res = await loginCoach({ email, password }).unwrap();
-      dispatch(setCoachCredentials({ ...res }));
+      const { tokens, ...otherCredentials } = await loginCoach({ email, password }).unwrap();
+      dispatch(setCoachCredentials(otherCredentials));
+      localStorage.setItem("coachAccessToken", tokens.accessToken);
+      localStorage.setItem("coachRefreshToken", tokens.refreshToken);
       navigate("/coachHome");
     } catch (error) {
       toast.error(error?.data?.message || error.error || error.message);
