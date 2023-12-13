@@ -79,7 +79,9 @@ const UserProfile = () => {
           "https://crickcoach.onrender.com/api/user/profile",
           formData,
           {
-            headers: { "Content-Type": "multipart/form-data" },
+            headers: { "Content-Type": "multipart/form-data",
+            UserAccessToken: localStorage.getItem("userAccessToken"),
+            UserRefreshToken: localStorage.getItem("userRefreshToken"), },
           }
         );
         const res = await updateUserProfile({
