@@ -6,7 +6,6 @@ import Admin from "../models/adminModel.js";
 
 const protect = asyncHandler(async (req, res, next) => {
   const userAccessToken = req.headers["useraccesstoken"];
-  console.log("userAccessToken", userAccessToken);
 
   try {
     const decoded = jwt.verify(
@@ -19,7 +18,6 @@ const protect = asyncHandler(async (req, res, next) => {
     next();
   } catch (error) {
     let userRefreshToken = req.headers["userrefreshtoken"];
-    console.log(userRefreshToken)
 
     if (!userRefreshToken) {
       res.status(401);
@@ -108,7 +106,7 @@ const protectCoach = asyncHandler(async (req, res, next) => {
 });
 
 const protectAdmin = asyncHandler(async (req, res, next) => {
-  const adminAccessToken = req.cookies.adminAccessToken;
+  const adminAccessToken = req.headers["adminaccesstoken"];
 
   try {
     const decoded = jwt.verify(
@@ -120,7 +118,7 @@ const protectAdmin = asyncHandler(async (req, res, next) => {
 
     next();
   } catch (error) {
-    const adminRefreshToken = req.cookies.adminRefreshToken;
+    const adminRefreshToken = req.headers["adminrefreshtoken"];
 
     if (!adminRefreshToken) {
       res.status(401);

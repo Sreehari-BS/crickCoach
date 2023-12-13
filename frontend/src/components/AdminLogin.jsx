@@ -19,7 +19,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useLoginAdminMutation } from "../slices/adminApiSlice";
 import { setAdminCredentials } from "../slices/adminAuthSlice";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 import Loader from "./Loader";
 
 const AdminLogin = () => {
@@ -50,8 +50,13 @@ const AdminLogin = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const res = await loginAdmin({ email, password }).unwrap();
-      dispatch(setAdminCredentials({ ...res }));
+      const { tokens, ...otherCredentials } = await loginAdmin({
+        email,
+        password,
+      }).unwrap();
+      dispatch(setAdminCredentials(otherCredentials));
+      localStorage.setItem("adminAccessToken", tokens.accessToken);
+      localStorage.setItem("adminRefreshToken", tokens.refreshToken);
       navigate("/adminHome");
     } catch (error) {
       toast.error(error?.data?.message || error.error || error.message);

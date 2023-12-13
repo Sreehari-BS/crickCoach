@@ -29,7 +29,7 @@ const generateUserToken = (res, userId) => {
     secure: process.env.NODE_ENV !== "development",
   });
 
-  return {accessToken, refreshToken}
+  return { accessToken, refreshToken };
 };
 
 const generateCoachToken = (res, coachId) => {
@@ -94,6 +94,8 @@ const generateAdminToken = (res, adminId) => {
     sameSite: "strict",
     maxAge: 30 * 24 * 60 * 60 * 1000,
   });
+
+  return { accessToken, refreshToken };
 };
 
 export { generateUserToken, generateCoachToken, generateAdminToken };
