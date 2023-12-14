@@ -120,7 +120,7 @@ const CoachHome = () => {
   useEffect(() => {
     const newSocket = io("https://crickcoach.onrender.com");
 
-    newSocket.on("connect", () => {
+    newSocket.on("connect", () => { 
       setSocket(newSocket);
       newSocket.emit("new-user-add", coachID);
       newSocket.on("get-users", (users) => {

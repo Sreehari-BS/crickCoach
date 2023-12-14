@@ -15,7 +15,7 @@ import {
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { Form } from "react-bootstrap";
-import CoachHeader from "./CoachHeader"
+import CoachHeader from "./CoachHeader";
 import { useDispatch, useSelector } from "react-redux";
 import { useUpdateCoachMutation } from "../slices/coachApiSlice";
 import { setCoachCredentials } from "../slices/coachAuthSlice";
@@ -82,9 +82,17 @@ const CoachProfile = () => {
       try {
         const formData = new FormData();
         formData.append("image", profileImage);
-        await axios.put("https://crickcoach.onrender.com/api/coach/profile", formData, {
-          headers: { "Content-Type": "multipart/form-data" },
-        });
+        await axios.put(
+          "https://crickcoach.onrender.com/api/coach/profile",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              CoachAccessToken: localStorage.getItem("coachAccessToken"),
+              CoachRefreshToken: localStorage.getItem("coachRefreshToken"),
+            },
+          }
+        );
         const res = await updateCoach({
           _id: coachInfo._id,
           name,

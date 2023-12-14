@@ -115,7 +115,7 @@ const userHome = () => {
     }
   };
 
-  console.log("coachList",coachList)
+  console.log("coachList", coachList);
 
   const { userInfo } = useSelector((state) => state.auth);
   const userId = userInfo && userInfo._id;
@@ -670,8 +670,11 @@ const userHome = () => {
                   <Typography sx={{ fontFamily: "monospace" }} level="h2">
                     Reviews
                   </Typography>
-                  <Typography sx={{fontFamily: "monospace", color: "coral"}} level="h4">
-                    Rating: <b >{avgRating && avgRating}</b>
+                  <Typography
+                    sx={{ fontFamily: "monospace", color: "coral" }}
+                    level="h4"
+                  >
+                    Rating: <b>{avgRating && avgRating}</b>
                   </Typography>
                 </div>
                 <br />
